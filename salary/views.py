@@ -20,8 +20,8 @@ class Salary:
         [35, 37, 40, 42, 44, 47, 49],
         [40, 42, 45, 47, 49, 52, 54]
     ]
-    def __init__(self, star_level=1, total_hour=0,
-                 first=0,second=0,third=0,forth=0,fifth=0):
+    def __init__(self, star_level=1, total_hour=0.0,
+                 first=0.0,second=0.0,third=0.0,forth=0.0,fifth=0.0):
         self.total_hour = total_hour
         self.extra_hour = total_hour-30
         self.fee_list = self.generate_fee_list()
@@ -76,12 +76,12 @@ def get_total(request):
     if request.method == 'GET':
         return render(request, 'index.html')
     star_level = int(request.POST.get('star_level'))
-    total_hour = int(request.POST.get('total_hour'))
-    first = int(request.POST.get('first'))
-    second = int(request.POST.get('second'))
-    third = int(request.POST.get('third'))
-    forth = int(request.POST.get('forth'))
-    fifth = int(request.POST.get('fifth'))
+    first = eval(request.POST.get('first'))
+    second = eval(request.POST.get('second'))
+    third = eval(request.POST.get('third'))
+    forth = eval(request.POST.get('forth'))
+    fifth = eval(request.POST.get('fifth'))
+    total_hour = first + second + third + forth + fifth
     salary = Salary(star_level=star_level,
                     total_hour=total_hour,
                     first=first,
