@@ -37,22 +37,22 @@ class Salary:
             for j in range(len(self.ks_fee)):
                 tmp_list.append(self.ks_fee[j][i])
             tmp_ks_fee.append(tmp_list)
-        if self.extra_hour <= 60:
+        if self.total_hour <= 60:
             return tmp_ks_fee[0]
-        elif self.extra_hour <= 90:
+        elif self.total_hour <= 90:
             return tmp_ks_fee[1]
-        elif self.extra_hour <= 110:
+        elif self.total_hour <= 110:
             return tmp_ks_fee[2]
-        elif self.extra_hour <= 130:
+        elif self.total_hour <= 130:
             return tmp_ks_fee[3]
-        elif self.extra_hour <= 150:
+        elif self.total_hour <= 150:
             return tmp_ks_fee[4]
-        elif self.extra_hour <= 170:
+        elif self.total_hour <= 170:
             return tmp_ks_fee[5]
         else:
             return tmp_ks_fee[6]
 
-    def cal_extra_salary(self, first, second, third, forth, fifth, xishu=1):
+    def cal_extra_salary(self, first, second, third, forth, fifth, xishu=1.0):
         cal = 0
         if first > 0:
             cal += first*self.fee_list[0]
