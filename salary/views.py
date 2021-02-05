@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-
+import math
 # Create your views here.
 
 
@@ -25,8 +25,9 @@ class Salary:
         self.total_hour = total_hour
         self.extra_hour = total_hour-30
         self.fee_list = self.generate_fee_list()
+        xishu = self.extra_hour/self.total_hour
         self.extra_salary = self.cal_extra_salary(first,second,third,
-                                                  forth, fifth)
+                                                  forth, fifth, xishu)
         self.star_level = star_level
 
     def generate_fee_list(self):
@@ -51,7 +52,7 @@ class Salary:
         else:
             return tmp_ks_fee[6]
 
-    def cal_extra_salary(self, first, second, third, forth, fifth):
+    def cal_extra_salary(self, first, second, third, forth, fifth, xishu=1):
         cal = 0
         if first > 0:
             cal += first*self.fee_list[0]
@@ -63,7 +64,7 @@ class Salary:
             cal += forth*self.fee_list[3]
         if fifth > 0:
             cal += fifth*self.fee_list[4]
-        return cal
+        return int(cal * xishu)
 
     def get_total_salary(self):
         return self.get_doudi()+self.extra_salary
